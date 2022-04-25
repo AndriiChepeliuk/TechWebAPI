@@ -1,4 +1,6 @@
+using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,10 @@ namespace TechWebAPI
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
+
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IDeveloperRepository, DeveloperRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
