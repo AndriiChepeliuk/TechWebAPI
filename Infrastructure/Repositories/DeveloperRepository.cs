@@ -15,9 +15,9 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Developer>> GetPopulerDevelopers(int count)
+        public IEnumerable<Developer> GetPopularDevelopers(int count)
         {
-            return await Task.Run(() => _context.Developers.OrderByDescending(d => d.Followers).Take(count).ToList());
+            return _context.Developers.OrderByDescending(d => d.Followers).Take(count).ToList();
         }
     }
 }

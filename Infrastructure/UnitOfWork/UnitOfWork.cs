@@ -22,9 +22,9 @@ namespace Infrastructure.UnitOfWork
             Projects = new ProjectRepository(_context);
         }
 
-        public async Task<int> Complete()
+        public int Complete()
         {
-            return await _context.SaveChangesAsync();
+            return _context.SaveChanges();
         }
 
         public void Dispose()

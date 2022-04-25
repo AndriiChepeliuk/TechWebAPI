@@ -18,45 +18,39 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(TEntity entity)
+        public void Add(TEntity entity)
         {
-            await Task.Run(() =>
-            {
-                _context.Set<TEntity>().Add(entity);
-            });
+            _context.Set<TEntity>().Add(entity);
         }
 
-        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
+        public void AddRange(IEnumerable<TEntity> entities)
         {
-            await Task.Run(() =>
-            {
-                _context.Set<TEntity>().AddRange(entities);
-            });
+            _context.Set<TEntity>().AddRange(entities);
         }
 
-        public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
         {
-            return await Task.Run(() => _context.Set<TEntity>().Where(expression));
+            return _context.Set<TEntity>().Where(expression);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public IEnumerable<TEntity> GetAll()
         {
-            return await Task.Run(() => _context.Set<TEntity>().ToList());
+            return _context.Set<TEntity>().ToList();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public TEntity GetById(int id)
         {
-            return await _context.Set<TEntity>().FindAsync(id);
+            return _context.Set<TEntity>().Find(id);
         }
 
-        public async Task RemoveAsync(TEntity entity)
+        public void Remove(TEntity entity)
         {
-            await Task.Run(() => _context.Set<TEntity>().Remove(entity));
+            _context.Set<TEntity>().Remove(entity);
         }
 
-        public async Task RemoveRangeAsync(IEnumerable<TEntity> entities)
+        public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            await Task.Run(() => _context.Set<TEntity>().RemoveRange(entities));
+            _context.Set<TEntity>().RemoveRange(entities);
         }
     }
 }

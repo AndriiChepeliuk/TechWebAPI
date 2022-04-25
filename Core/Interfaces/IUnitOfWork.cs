@@ -10,6 +10,6 @@ namespace Core.Interfaces
     {
         IDeveloperRepository Developers { get; }
         IProjectRepository Projects { get; }
-        Task<int> Complete();
+        int Complete();
     }
 }

@@ -9,6 +9,6 @@ namespace Core.Interfaces
 {
     public interface IDeveloperRepository : IGenericRepository<Developer>
     {
-        Task<IEnumerable<Developer>> GetPopulerDevelopers(int count);
+        IEnumerable<Developer> GetPopularDevelopers(int count);
     }
 }
